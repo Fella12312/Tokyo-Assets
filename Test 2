@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Senso-ji Temple · Tokyo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #1a0f0a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Jost', sans-serif;
+      padding: 40px 16px;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 80%, rgba(180,60,40,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 20%, rgba(200,100,30,0.18) 0%, transparent 55%),
+        radial-gradient(ellipse 100% 100% at 50% 50%, #1f0f08 0%, #120a06 100%);
+      z-index: 0;
+    }
+
+    .ripple {
+      position: fixed;
+      border-radius: 50%;
+      border: 1px solid rgba(200,80,40,0.12);
+      animation: ripple 8s ease-out infinite;
+      z-index: 0;
+    }
+    .ripple:nth-child(1) { width: 300px; height: 300px; bottom: -80px; left: -80px; animation-delay: 0s; }
+    .ripple:nth-child(2) { width: 500px; height: 500px; bottom: -150px; left: -150px; animation-delay: 1.5s; }
+    .ripple:nth-child(3) { width: 700px; height: 700px; bottom: -220px; left: -220px; animation-delay: 3s; }
+    .ripple:nth-child(4) { width: 250px; height: 250px; top: -60px; right: -60px; animation-delay: 2s; }
+    .ripple:nth-child(5) { width: 420px; height: 420px; top: -120px; right: -120px; animation-delay: 4s; }
+
+    @keyframes ripple {
+      0% { transform: scale(0.95); opacity: 0.6; }
+      50% { transform: scale(1.05); opacity: 0.2; }
+      100% { transform: scale(0.95); opacity: 0.6; }
+    }
+
+    .card {
+      position: relative;
+      z-index: 1;
+      max-width: 560px;
+      width: 100%;
+      background: rgba(30,15,8,0.65);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(200,100,50,0.25);
+      border-radius: 2px;
+      padding: 52px 52px 48px;
+      box-shadow:
+        0 2px 40px rgba(180,60,20,0.12),
+        0 1px 0 rgba(255,180,100,0.08) inset;
+      animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 10px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: #c8703a;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .eyebrow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(200,112,58,0.45), transparent);
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 38px;
+      line-height: 1.1;
+      color: #f0ddc8;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    h1 em {
+      font-style: italic;
+      color: #d96030;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: linear-gradient(to right, #c8703a, transparent);
+      margin: 22px 0;
+    }
+
+    p {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: #c8b09a;
+      letter-spacing: 0.01em;
+    }
+
+    p em {
+      color: #e8c8a8;
+      font-style: italic;
+    }
+
+    .drop {
+      float: left;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 62px;
+      line-height: 0.75;
+      margin: 6px 12px 0 0;
+      color: #d96030;
+      font-weight: 400;
+    }
+
+    /* Image gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+      margin: 26px 0;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .gallery-main {
+      grid-column: 1 / -1;
+      height: 195px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery-thumb {
+      height: 118px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+      filter: saturate(0.88) brightness(0.85);
+    }
+
+    .gallery-main:hover img,
+    .gallery-thumb:hover img {
+      transform: scale(1.04);
+    }
+
+    .img-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 8px 12px;
+      font-size: 9px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,220,180,0.85);
+      background: linear-gradient(to top, rgba(30,10,5,0.75), transparent);
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+    }
+  </style>
+</head>
+<body>
+  <div class="ripple"></div>
+  <div class="ripple"></div>
+  <div class="ripple"></div>
+  <div class="ripple"></div>
+  <div class="ripple"></div>
+
+  <div class="card">
+    <div class="eyebrow">K12 Zone · Tokyo virtual field trip</div>
+    <h1>Tokyo's <em>Ancient</em><br>Senso-ji Temple</h1>
+    <div class="divider"></div>
+
+    <p>
+      <span class="drop">F</span>ounded in 628 AD, Senso-ji is Tokyo's oldest and most beloved temple — a place where incense smoke drifts past a towering crimson gate and the hum of prayers mingles with the bustle of the city. Dedicated to Kannon, the Buddhist goddess of mercy, it has been a spiritual heart of the city for nearly fourteen centuries.
+    </p>
+
+    <div class="gallery">
+      <div class="gallery-main">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Sensoji_2010.jpg/1280px-Sensoji_2010.jpg"
+          alt="Senso-ji Temple main hall in Asakusa Tokyo"
+        />
+        <div class="img-caption">Senso-ji Main Hall · Asakusa, Tokyo</div>
+      </div>
+      <div class="gallery-thumb">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Kaminarimon_at_Senso-ji.jpg/640px-Kaminarimon_at_Senso-ji.jpg"
+          alt="Kaminarimon Thunder Gate at Senso-ji"
+        />
+        <div class="img-caption">Kaminarimon · Thunder Gate</div>
+      </div>
+      <div class="gallery-thumb">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Nakamise-dori_Asakusa_2012.jpg/640px-Nakamise-dori_Asakusa_2012.jpg"
+          alt="Nakamise shopping street leading to Senso-ji"
+        />
+        <div class="img-caption">Nakamise-dōri · Pilgrim's path</div>
+      </div>
+    </div>
+
+    <p>
+      Visitors enter through the iconic <em>Kaminarimon</em> — the "Thunder Gate" — flanked by ferocious guardian deities and hung with a massive 700-kilogram red lantern. A long pedestrian lane called <em>Nakamise-dōri</em> leads deeper into the complex, lined with stalls selling traditional crafts, street food, and lucky charms that pilgrims have sought for generations.
+    </p>
+
+    <p style="margin-top:14px;">
+      Though the main hall was destroyed in World War II and rebuilt in 1958, the temple's spirit endures unchanged. Today, over 30 million visitors arrive each year — many to draw an <em>omikuji</em> fortune slip or offer a prayer before the golden image of Kannon, carrying on a ritual that has continued without interruption since before Tokyo was even called Tokyo.
+    </p>
+  </div>
+</body>
+</html>
