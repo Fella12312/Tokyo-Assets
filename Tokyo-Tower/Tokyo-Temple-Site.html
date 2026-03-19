@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tokyo Tower · Japan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #e8321a;
+      --orange: #f07030;
+      --dark: #080608;
+      --mid: #140c10;
+      --text: #c8b0a8;
+      --light: #f0ddd8;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--dark);
+      font-family: 'Jost', sans-serif;
+      color: var(--text);
+    }
+
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 420px;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.55) saturate(1.1);
+      animation: zoomIn 12s ease-out both;
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(1.06); }
+      to   { transform: scale(1); }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 30%, var(--dark) 100%);
+    }
+
+    .hero-text {
+      position: absolute;
+      bottom: 40px;
+      left: 48px;
+      animation: fadeUp 1s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    .eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+
+    .hero-text h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: 52px;
+      line-height: 1.0;
+      color: var(--light);
+      letter-spacing: -0.02em;
+    }
+
+    .hero-text h1 em {
+      font-style: italic;
+      color: var(--red);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 32px 60px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(232,50,26,0.15);
+      border: 1px solid rgba(232,50,26,0.15);
+      margin: 40px 0;
+      animation: fadeUp 1s 0.5s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    .stat {
+      background: var(--mid);
+      padding: 20px 16px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 300;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text);
+      opacity: 0.7;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      margin: 32px 0;
+      animation: fadeUp 1s 0.6s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    .split-img {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .split-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.85) brightness(0.8);
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .split-img:hover img { transform: scale(1.04); }
+
+    .split-img .img-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 6px 10px;
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,220,200,0.8);
+      background: linear-gradient(to top, rgba(8,6,8,0.8), transparent);
+    }
+
+    .split-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .section-label {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(232,50,26,0.4), transparent);
+    }
+
+    .split-text p {
+      font-size: 13.5px;
+      line-height: 1.9;
+      color: var(--text);
+      font-weight: 300;
+    }
+
+    .body-text {
+      animation: fadeUp 1s 0.7s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    .body-text p {
+      font-size: 14.5px;
+      line-height: 1.85;
+      color: var(--text);
+      font-weight: 300;
+      margin-bottom: 14px;
+    }
+
+    .body-text p em { color: var(--light); font-style: italic; }
+
+    .drop {
+      float: left;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 62px;
+      line-height: 0.75;
+      margin: 6px 12px 0 0;
+      color: var(--red);
+      font-weight: 400;
+    }
+
+    .strip {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 6px;
+      margin-top: 32px;
+      height: 160px;
+      overflow: hidden;
+      animation: fadeUp 1s 0.8s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    .strip-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .strip-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.85) brightness(0.75);
+      transition: transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+
+    .strip-item:hover img { transform: scale(1.04); }
+
+    .strip-item .img-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 6px 10px;
+      font-size: 8px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,220,200,0.8);
+      background: linear-gradient(to top, rgba(8,6,8,0.8), transparent);
+    }
+
+    .footer-line {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(232,50,26,0.15);
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(200,176,168,0.4);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=1400&auto=format&fit=crop" alt="Tokyo Tower at night" />
+    <div class="hero-overlay"></div>
+    <div class="hero-text">
+      <div class="eyebrow">K12 Zone · Tokyo virtual field trip</div>
+      <h1>Tokyo<br><em>Tower</em></h1>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-number">333m</div>
+        <div class="stat-label">Height</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">1958</div>
+        <div class="stat-label">Completed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">3M+</div>
+        <div class="stat-label">Visitors / Year</div>
+      </div>
+    </div>
+
+    <div class="split">
+      <div class="split-img">
+        <img src="https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=800&auto=format&fit=crop" alt="Tokyo Tower from below" />
+        <div class="img-caption">Looking up · 333 metres</div>
+      </div>
+      <div class="split-text">
+        <div class="section-label">Origins</div>
+        <p>Built as a symbol of Japan's postwar rebirth, Tokyo Tower was inspired by the Eiffel Tower — but painted orange and white to meet aviation safety rules. At completion it was the tallest structure in all of Japan.</p>
+      </div>
+    </div>
+
+    <div class="body-text">
+      <p>
+        <span class="drop">C</span>ompleted in 1958, Tokyo Tower stands in the Minato district as one of the most recognisable landmarks in Asia. It houses two observation decks — the <em>Main Deck</em> at 150 metres and the <em>Top Deck</em> at 250 metres — both offering sweeping views across Tokyo and, on clear days, all the way to Mount Fuji.
+      </p>
+      <p>
+        At its base sits <em>FootTown</em>, a four-storey complex packed with museums, cafés, and shops. Though Tokyo Skytree surpassed it in height in 2012, Tokyo Tower remains the city's most beloved structure — a warm orange glow that has watched over the skyline for over sixty years.
+      </p>
+      <p>
+        The tower changes colour with the seasons — glowing <em>diamond white</em> in winter and <em>landmark orange</em> the rest of the year. On special occasions it dresses in custom lighting to mark everything from national holidays to charity campaigns. For many Tokyo residents, spotting the tower through a gap in the buildings on their daily commute is a quiet, reassuring reminder of home.
+      </p>
+    </div>
+
+    <div class="strip">
+      <div class="strip-item">
+        <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=900&auto=format&fit=crop" alt="Tokyo skyline" />
+        <div class="img-caption">Tokyo skyline · Minato City</div>
+      </div>
+      <div class="strip-item">
+        <img src="https://images.unsplash.com/photo-1524413840807-0c3cb6fa808d?w=400&auto=format&fit=crop" alt="Tokyo streets" />
+        <div class="img-caption">Streets of Tokyo</div>
+      </div>
+    </div>
+
+    <div class="footer-line">Tokyo Tower · Minato, Tokyo · Est. 1958</div>
+
+  </div>
+</body>
+</html> 
